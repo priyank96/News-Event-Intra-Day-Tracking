@@ -1,3 +1,4 @@
+'''headlines from first three pages of latest section on profit.ndtv, intended for non-commercial, personal use'''
 from bs4 import BeautifulSoup
 import urllib.request
 page_no=1

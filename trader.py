@@ -1,3 +1,5 @@
+''' Simulates trading, logs trading action in tradeLog'''
+
 from __future__ import division 
 from time import sleep
 from datetime import datetime, time
@@ -12,28 +14,28 @@ import pickle
 
 if __name__ == "__main__":
     
-    while datetime.now().second != 59:
+    while datetime.now().second != 59: #start at end of minute
         continue
     
-    entities = [Entity('530019'),Entity('532296'),Entity('500086'),Entity('500228'),Entity('500875')]
+    entities = [Entity('530019'),Entity('532296'),Entity('500086'),Entity('500228'),Entity('500875')] #stocks to trade on the Bombay Stock Exchange
     tradeLog= {entity.ID : [] for entity in entities}
         
     while datetime.now().time()<time(15,30):
         if datetime.now().time()>time(9,14):
             for i in entities:
                 i.updateValues()
-                if i.cornerPoint<0 and i.holdState==0 and i.prevDayDelta[-1]>0:
+                if i.cornerPoint<0 and i.holdState==0 and i.prevDayDelta[-1]>0: #Sell
                     i.holdState =-1
                     i.trade.append(i.priceList[-1])
                     print (i.trade[0])
                     tradeLog[i.ID].append(i.priceList[-1])
 
-                if i.holdState==-1  and ((i.trade[0]-i.priceList[-1])/i.priceList[-1])>0.0040 :       
+                if i.holdState==-1  and ((i.trade[0]-i.priceList[-1])/i.priceList[-1])>0.0040 :       #Buy
                     i.holdState = 1
                     tradeLog[i.ID].append(i.priceList[-1])
                     print((i.trade[0]-i.priceList[-1])/i.priceList[-1])
                     
-                if(i.holdState==1):                  #change back to 5
+                if(i.holdState==1):                  
                     entities.remove(i)
                     if len(entities)==0:
                         break
@@ -60,6 +62,6 @@ if __name__ == "__main__":
                 #    tradeLog[i.ID].append(i.priceList[-1])
 
     
-    print("here")
+    print("Done")
        
         

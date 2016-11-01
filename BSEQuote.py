@@ -1,4 +1,4 @@
-
+'''stock price data from google finance'''
 
 import urllib.request as  urllib2
 from bs4 import BeautifulSoup as bs

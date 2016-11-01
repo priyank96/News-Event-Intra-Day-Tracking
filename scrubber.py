@@ -5,7 +5,7 @@ for i in fs:
     listed.append(i[:-1])
 fs.close()
 
-def re_list(): #updates listed when new company is added
+def re_list(): #updates listed companies when new company is added
     fs=open("words2.txt",'r')
     for i in fs:
         listed.append(i[:-1])
@@ -39,7 +39,7 @@ def scorer(ch,temp): #listed companies to be added somewhere here
     print("\nNews For: ")
     islisted=False
     for i in range(0,len(ch)-3): #to assign listed company score and print listed company, given 3, to distinguish
-            if(ch[i]+' '+ch[i+1]+' '+ch[i+2] in listed):        #breaks are put in here as we handle only one listed company so far
+            if(ch[i]+' '+ch[i+1]+' '+ch[i+2] in listed):        #breaks after recognizing one company
                 sc[i]=3
                 print(ch[i]+' '+ch[i+1]+' '+ch[i+2])
                 print(sc)
@@ -74,14 +74,11 @@ def scorer(ch,temp): #listed companies to be added somewhere here
         return -3
         
     
-    print(sc, temp)
+  
     
     return calc(sc,temp)
 
-def calc(ch,temp):
-    #print(ch)
-    #print("HERE!")
-    #print(temp)
+def calc(ch,temp):  #calculates sentiment score for headline
     start=0
     total=0
     if('but' in temp):
@@ -122,7 +119,6 @@ def calc(ch,temp):
             for j in ch:
                 total+=j
             
-        print(total,' = total')
     return total    
             
         

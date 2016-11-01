@@ -1,3 +1,4 @@
+''' Logs [Time, sell price, buy price] into TradeLog.csv''' 
 import csv
 import datetime
 

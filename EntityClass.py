@@ -1,3 +1,4 @@
+'''Class encapsulating stock details and methods'''
 from __future__ import division 
 from time import sleep
 from datetime import datetime, time
@@ -10,7 +11,7 @@ class Entity:
         self.priceList=[]       #List of prices
         self.movingAvg=[]       #List of moving averages
         self.cornerPoint = 1  #Diff. b/w last moving-avg. and current moving-avg.
-        self.holdState = 0 #-1:Sold, 0: Not Held,1: Sold, and bought back  2: Bought -- 5: Done Trading
+        self.holdState = 0 #-1:Sold, 0: Not Held,1: Bought, Done Trading 
         self.prevDayDelta=[]
         self.trade = [] #price of buy/sell
     
