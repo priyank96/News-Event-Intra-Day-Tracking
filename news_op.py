@@ -1,12 +1,14 @@
-from scrubber import scrubber, re_list
+'''picks the positive headlines from the scrubbed headlines'''
+from scrubber import scrubber
 import headlines_ndtv
-choice=0
+
 f=open("headlines(ndtv).txt",'r')
 
 h=open("calls(ndtv).txt",'w')
 hl=' '
 while hl!="end":
-        print(hl)
+
+        #print(hl)
         if(',' in hl):      #space for commas
                 hl=hl.replace(',',' ,',7)
         if("'" in hl):      #space for apostrophes
@@ -14,14 +16,18 @@ while hl!="end":
         hl=hl.split(' ')
         score=scrubber(hl[:-1])
         if(score>0):
-                h.write(' '.join(hl)+'\n')
-                h.write('score: '+str(score)+'\n\n')
-        #print(score)
+                 h.write(' '.join(hl)+'\n')
+                #h.write('score: '+str(score)+'\n\n')
+         #print(score)
         hl=f.readline().lower()
 f.close()
 h.close()
-with open("calls(ndtv).txt",'r') as f:
-        print(f.read())
+print("Done- news_op")
+
+        
+if __name__=='__main__':
+        with open("calls(ndtv).txt",'r') as f:
+                print(f.read())
         
 
         

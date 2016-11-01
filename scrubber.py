@@ -5,12 +5,6 @@ for i in fs:
     listed.append(i[:-1])
 fs.close()
 
-def re_list(): #updates listed companies when new company is added
-    fs=open("words2.txt",'r')
-    for i in fs:
-        listed.append(i[:-1])
-    fs.close()
-#print(listed)
 def scrubber(ch):
     '''Removes numbers, Cr., crores, q1, etc'''
     temp=[]
@@ -22,7 +16,7 @@ def scrubber(ch):
                 break
             if j+1==len(i) and i not in ('crore','cr','rs','rs.','|'):
                 temp.append(i) 
-        print(temp)
+        #print(temp)
     return scorer(temp,temp)
 
 def scorer(ch,temp): #listed companies to be added somewhere here
@@ -36,13 +30,13 @@ def scorer(ch,temp): #listed companies to be added somewhere here
             sc.append(0)
     
     
-    print("\nNews For: ")
+    #print("\nNews For: ")
     islisted=False
     for i in range(0,len(ch)-3): #to assign listed company score and print listed company, given 3, to distinguish
             if(ch[i]+' '+ch[i+1]+' '+ch[i+2] in listed):        #breaks after recognizing one company
                 sc[i]=3
-                print(ch[i]+' '+ch[i+1]+' '+ch[i+2])
-                print(sc)
+                #print(ch[i]+' '+ch[i+1]+' '+ch[i+2])
+                #print(sc)
                 del sc[i+1], sc[i+1]
                 i=i+2
                 islisted=True
@@ -50,8 +44,8 @@ def scorer(ch,temp): #listed companies to be added somewhere here
 
             elif(ch[i]+' '+ch[i+1]+' '+ch[i+2]+' '+ch[i+3] in listed):
                 sc[i]=3
-                print(ch[i]+' '+ch[i+1]+' '+ch[i+2]+' '+ch[i+3])
-                print(sc)
+                #print(ch[i]+' '+ch[i+1]+' '+ch[i+2]+' '+ch[i+3])
+                #print(sc)
                 del sc[i+1], sc[i+1],sc[i+1]
                 i=i+3
                 islisted=True
@@ -59,7 +53,7 @@ def scorer(ch,temp): #listed companies to be added somewhere here
                 
             elif(ch[i]+' '+ch[i+1] in listed):
                 sc[i]=3
-                print(ch[i]+' '+ch[i+1])
+                #print(ch[i]+' '+ch[i+1])
                 del sc[i+1]
                 i=i+1
                 islisted=True
@@ -67,7 +61,7 @@ def scorer(ch,temp): #listed companies to be added somewhere here
 
             elif(ch[i] in listed):
                 sc[i]=3
-                print(ch[i])
+                #print(ch[i])
                 islisted=True
                 break
     if(islisted==False):
@@ -91,7 +85,7 @@ def calc(ch,temp):  #calculates sentiment score for headline
     v1=0
     v2=0
     for i in range(start,len(ch)):
-        print(total)
+        #print(total)
         if(ch[i]==1 or ch[i]==-1): #modifier found
             for j in range(i+1,len(ch)): #looks for keywords to the right
                 if ch[j]==2 or ch[j]==-2:

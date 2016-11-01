@@ -7,17 +7,20 @@ from BSEQuote import getPrice
 from EntityClass import Entity
 from logger import logger
 import pickle
+import headline_to_symbol as hs 
         
          
             
         
 
 if __name__ == "__main__":
+
+    entities = hs.headline_to_symbol() #stocks to trade on the Bombay Stock Exchange
     
     while datetime.now().second != 59: #start at end of minute
         continue
     
-    entities = [Entity('530019'),Entity('532296'),Entity('500086'),Entity('500228'),Entity('500875')] #stocks to trade on the Bombay Stock Exchange
+    
     tradeLog= {entity.ID : [] for entity in entities}
         
     while datetime.now().time()<time(15,30):
@@ -62,6 +65,6 @@ if __name__ == "__main__":
                 #    tradeLog[i.ID].append(i.priceList[-1])
 
     
-    print("Done")
+    print("Done- trader")
        
         
