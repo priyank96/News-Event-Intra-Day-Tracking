@@ -8,7 +8,12 @@ fs.close()
 def scrubber(ch):
     '''Removes numbers, Cr., crores, q1, etc'''
     temp=[]
-    #print(ch,"HERE")
+    for i in range(0,len(ch)):
+        if "'s" in ch[i] and "reddy's" not in ch[i]:
+            ch[i] = ch[i].replace("'s",'')
+            #print(i)
+    #print(ch)
+   
     for i in ch:
       
         for j in range(0,len(i)):
@@ -28,6 +33,7 @@ def scorer(ch,temp): #listed companies to be added somewhere here
             sc.append(words[i])
         else:
             sc.append(0)
+    #print(sc)
     
     
     #print("\nNews For: ")
@@ -65,6 +71,7 @@ def scorer(ch,temp): #listed companies to be added somewhere here
                 islisted=True
                 break
     if(islisted==False):
+        #print(islisted)
         return -3
         
     
@@ -73,6 +80,7 @@ def scorer(ch,temp): #listed companies to be added somewhere here
     return calc(sc,temp)
 
 def calc(ch,temp):  #calculates sentiment score for headline
+    
     start=0
     total=0
     if('but' in temp):
@@ -86,6 +94,7 @@ def calc(ch,temp):  #calculates sentiment score for headline
     v2=0
     for i in range(start,len(ch)):
         #print(total)
+        #print(ch[i])
         if(ch[i]==1 or ch[i]==-1): #modifier found
             for j in range(i+1,len(ch)): #looks for keywords to the right
                 if ch[j]==2 or ch[j]==-2:
@@ -101,9 +110,12 @@ def calc(ch,temp):  #calculates sentiment score for headline
                     break
             if(p2<p1 ):             #checks if left or right is closer
                 total+=ch[t2]*v2
-            elif(p1>p2):
+                #print("Herer",ch[t2]*v2)
+            elif(p1<p2):
                 total+=ch[t1]*v1
+                #print("here",ch[t1]*v1)
             else:                   #if both are equal ,preference to non listed company keyword
+                #print("here")
                 if(ch[t2]<3):
                     total+=ch[t2]*v2
                 else:
@@ -115,5 +127,7 @@ def calc(ch,temp):  #calculates sentiment score for headline
             
     return total    
             
-        
+
+if __name__=='__main__':
+    print(scrubber(str(input("Enter Headline:")).lower().split(' ')))
     

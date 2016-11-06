@@ -2,23 +2,32 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import dateutil.parser as dparser
-from datetime import time
+import datetime
+
 page_no=1
+cutoff=datetime.datetime.now() - datetime.timedelta(days=1)
+cutoff=cutoff.replace(hour=16, minute=0)
+print(cutoff)
 url="http://profit.ndtv.com/news/latest/page-"
 f=open("headlines(ndtv).txt",'w')
 
-while(page_no!=4):
+while(page_no!=5):
+    #print(page_no)
     page=urllib.request.urlopen(url+str(page_no))
     soup=BeautifulSoup(page.read(),"html.parser")
+    #print(soup)
     anchors = [div.find('a') for div in soup.findAll('div', {'class': 'nstory_header'})]
     times =  [div for div in soup.findAll('div', {'class': 'nstory_dateline'})]
     for i in range(0,len(anchors)):
-        #print(anchors[i].text)
+        print(anchors[i].text)
         f.write(anchors[i].text.lstrip()+'\n')
         publish_time = dparser.parse(times[i].text,fuzzy=True)
-        if  publish_time.time()< time(16,0):
+        if  publish_time< cutoff:
+            print("here")
             break
-        print(publish_time)
+    if(i+1!=len(anchors)):
+        break
+        
     page_no+=1
 f.write("End")
 f.close()
@@ -26,3 +35,7 @@ f.close()
 print("Done- profit.ndtv")
 
      
+if __name__=='__main__':
+    with open("headlines(ndtv).txt",'r') as f:
+        print(f.read())
+        

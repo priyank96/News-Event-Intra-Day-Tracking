@@ -16,7 +16,7 @@ class Entity:
         self.trade = [] #price of buy/sell
     
     def Avg(self): #exponential moving average for 10 period
-        if(len(self.priceList)<11):
+        if(len(self.priceList)==0):
             self.movingAvg.append(self.priceList[-1])
         else:
             self.movingAvg.append((self.priceList[-1]*0.1818)+(self.movingAvg[-1]*0.8181))

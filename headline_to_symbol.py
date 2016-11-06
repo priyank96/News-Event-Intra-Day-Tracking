@@ -9,12 +9,15 @@ def headline_to_symbol():
     
     with open("calls(ndtv).txt",'r') as fil:
         headlines=(fil.read().strip().splitlines())
+    
     entities = []
-
+    
     for hl in headlines:
         for company in listed.keys():
             if company in hl:
                 entities.append(Entity(listed[company]))
+    for entity in entities:
+        print(entity.ID)
     return entities
 
 if __name__=='__main__':
