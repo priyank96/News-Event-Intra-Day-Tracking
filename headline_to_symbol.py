@@ -4,7 +4,7 @@ from words import listed
 from EntityClass import *
 import news_op
 
-def headline_to_symbol():
+def headline_to_symbol() -> object:
     
     
     with open("calls(ndtv).txt",'r') as fil:

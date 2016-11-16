@@ -1,4 +1,4 @@
-'''contains dictionary of keywords'''
+"""contains dictionary of keywords"""
 words={'pact' : 2,'co-develop' : 1,'raise' : 1,'up' : 2,'not' : -1,'restart' : 1,'nod' : 1,'gets' : 1,'get' : 1,'surges' : 1,'ties' :1,'launch' : 1,'rises' : 1,'meets' : 1,'induct' : 1,'trims' : -1,
        'sell' : 1,'ells' : 1,'boost' : 1,'recall' : -1,'order' : 1,'approves' : 1,'fall' : -1,'trails' : -1,'bags' : 1,'loss' : -2,'develop' : 1,'exit' : -1,'pre-closes' : 1,'starts' : 1,'hit' : -1,
        'wins' : 1,'misses' : -1,'co-market' : 1,'supply' : 1,'climbs' : 1,'profit' : 2,'widens' : 1,'narrows' : -1,'rise' : 1,'plunges' : -1,'enter' : 1,'resume' : 1,'beats' : 1, 'jump' : 1,
@@ -12,4 +12,11 @@ words={'pact' : 2,'co-develop' : 1,'raise' : 1,'up' : 2,'not' : -1,'restart' : 1
         ,'il&fs engineering',"dr reddy's",'sbi','punjab national bank','unitech','sun pharma','tata steel','ntpc','cipla','cera','ajanta pharma','reliance infra','dlf','shasun pharma','videocon',
         'bharat forge','marico','container corporation','pidilite industries','oracle financial services software','motherson sumi','godrej consumer products','maruti','bhel','eicher motors','royal enfield':'505200')
 '''
-listed ={'ashok leyland':'500477','royal enfield':'505200', 'eicher motors':'505200','sail':'500113','hero motocorp':'500182','berger paints':'509480','airtel':'532454'}
+listed ={'ashok leyland':'500477','royal enfield':'505200', 'eicher motors':'505200','sail':'500113','hero motocorp':'500182','berger paints':'509480','airtel':'532454',
+         'srei infrastructure finance': '523756','ceat':'500878','britangfb nia industries':'500825','jaguar land rover':'500570','interglobe aviation':'539448','rec':'532955',
+         'sun pharma':'524715','aurobindo pharma':'524804','gail india': '532155','lupin':'500257','tata global beverages':'500800'}
+#
+
+
+
+
