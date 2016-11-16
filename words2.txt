@@ -43,6 +43,7 @@ punjab national bank
 unitech
 sun pharma
 tata steel
+tata global beverages
 ntpc
 cipla
 cera
@@ -58,6 +59,7 @@ canara bank
 reliance group
 religare
 aurobindo
+aurobindo pharma
 infosys
 strides shasun
 petronet
@@ -70,6 +72,7 @@ apollo
 bgr energy systems
 reliance communications
 gail
+gail india
 orient green
 idbi bank
 godrej properties
@@ -107,6 +110,17 @@ itc
 royal enfield
 sail
 berger paints
+srei infrastructure finance
+ceat
+britannia industries
+jaguar land rover
+interglobe aviation
+rec
+rural electrification corporation
+
+
+
+
 
 
 

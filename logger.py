@@ -1,13 +1,13 @@
-''' Logs [Time, sell price, buy price] into TradeLog.csv''' 
+''' Logs [Time,  price, change price] into TradeLog.csv'''
 import csv
 import datetime
 
-def logger(tradeLog):
-    with open('TradeLog.csv','a') as csvfile:
-            writer = csv.writer(csvfile,delimiter=',')
-            for i in tradeLog.keys():
-                row = [datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"),i]
-                row.extend(tradeLog[i])
-                writer.writerow(row)
-        
-    
+
+def logger(entity):
+    row = [datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")]
+    row.append(entity.priceList[-1])
+    row.append(entity.prevDayDelta[-1])
+    print(row)
+    with open('TradeLog'+entity.ID+'.csv', 'a+') as csvfile:
+        writer = csv.writer(csvfile, delimiter=',')
+        writer.writerow(row)
