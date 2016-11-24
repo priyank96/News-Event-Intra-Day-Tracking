@@ -49,6 +49,7 @@ cipla
 cera
 ajanta pharma
 reliance infra
+reliance infrastructure
 dlf
 shasun pharma
 videocon
@@ -117,6 +118,12 @@ jaguar land rover
 interglobe aviation
 rec
 rural electrification corporation
+engineers india
+petronet lng
+l&t;s
+
+
+
 
 
 
