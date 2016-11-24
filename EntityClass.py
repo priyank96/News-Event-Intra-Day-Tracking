@@ -2,6 +2,10 @@
 from __future__ import division
 
 from BSEQuote import getPrice
+import csv
+import datetime
+import os.path
+
 
 
 class Entity:
@@ -14,8 +18,23 @@ class Entity:
         self.prevDayDelta = []
         self.trade = []  # price of buy/sell
 
+        self.file_name = "PastTrades/TradeLog" + self.ID + '.csv'
+        self.file_count = 0
+        while os.path.isfile(self.file_name):
+            self.file_name = "PastTrades/TradeLog" + self.ID + str(self.file_count) + '.csv'
+            self.file_count += 1
+
+    def log(self):
+        row = [datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S"), self.priceList[-1], self.prevDayDelta[-1]]
+
+        print(row)
+
+        with open(self.file_name, 'a+') as csvfile:
+            writer = csv.writer(csvfile, delimiter=',')
+            writer.writerow(row)
+
     def Avg(self):  # exponential moving average for 10 period
-        if (len(self.priceList) == 1):
+        if len(self.priceList) == 1:
             self.movingAvg.append(self.priceList[-1])
         else:
             self.movingAvg.append((self.priceList[-1] * 0.1818) + (self.movingAvg[-1] * 0.8181))
@@ -36,7 +55,7 @@ class Entity:
         return str(self.trade)  
 
     def __str__(self):
-        if (len(self.movingAvg) > 0):
+        if len(self.movingAvg) > 0:
             return self.ID + "  " + str(self.priceList[-1]) + " Moving average: " + str(self.movingAvg[-1])
         else:
             return self.ID + "  " + str(self.priceList[-1])

@@ -3,13 +3,16 @@
 # from __future__ import division
 from time import sleep
 from datetime import datetime, time
-from logger import logger
+
 import pickle
 import headline_to_symbol as hs
 
 
+
 def tradeWith(entity):
     entity.updateValues()
+    if entity.holdState == 1:
+        return 1  # done trading, running for price history
     if entity.cornerPoint < 0 and entity.holdState == 0 and entity.prevDayDelta[-1] > 0:  # Sell
         entity.holdState = -1
         entity.trade.append(entity.priceList[-1])
@@ -17,10 +20,10 @@ def tradeWith(entity):
 
     if entity.holdState == -1 and ((entity.trade[0] - entity.priceList[-1]) / entity.priceList[-1]) > 0.0039:  # Buy
         entity.holdState = 1
+        entity.trade.append(entity.priceList[-1])
         print((entity.trade[0] - entity.priceList[-1]) / entity.priceList[-1])
 
-    if entity.holdState == 1:
-        return 1  # done trading, get rid of entity
+
     return -1  # not done trading, don't get rid of entity
 
 
@@ -39,14 +42,14 @@ if __name__ == "__main__":
                 if tradeWith(entity) == 1:  # done trading
 
                     tradeLog[entity.ID] = entity.trade
-                    logger(entity)
-                    entities.remove(entity)
+                    entity.log()
+                    #entities.remove(entity)
                     continue
 
                 else:
 
                     tradeLog[entity.ID] = entity.trade
-                    logger(entity)
+                    entity.log()
 
         else:
             print("waiting " + str(datetime.now().time()))

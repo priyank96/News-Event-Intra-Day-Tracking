@@ -26,7 +26,7 @@ def toFloat(result):
 @static("line_counter", 0)
 def getPrice(symbol, mode='real'):
     if mode == 'simulated':
-        with open('TradeLog.csv', 'r') as fil:
+        with open('TradeLog.csv', 'r') as fil:      #Fix file names here
             for i, line in enumerate(fil):
                 if i == getPrice.line_counter:
                     return line.split(',')

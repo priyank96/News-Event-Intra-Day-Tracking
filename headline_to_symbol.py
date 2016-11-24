@@ -9,7 +9,6 @@ def headline_to_symbol() -> object:
     
     with open("calls(ndtv).txt",'r') as fil:
         headlines=(fil.read().strip().splitlines())
-    
     entities = []
     
     for hl in headlines:
