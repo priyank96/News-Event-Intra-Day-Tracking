@@ -9,13 +9,12 @@ now = datetime.datetime.now()
 if now.isoweekday() == 1:       # weekend checking
     cutoff = now - datetime.timedelta(days=3)
 else:
-    cutoff = now - datetime.timedelta(days=1
-                                      )
-cutoff = cutoff.replace(hour=16, minute=0)
+    cutoff = now - datetime.timedelta(days=2)
+cutoff = cutoff.replace(hour=15, minute=30)
 print(cutoff)
 url = "http://profit.ndtv.com/news/latest/page-"
 f = open("headlines(ndtv).txt", 'w')
-
+pattern = "Last Updated"
 while page_no != 10:
     #print(page_no)
     page = urllib.request.urlopen(url+str(page_no))
@@ -26,9 +25,11 @@ while page_no != 10:
     for i in range(0,len(anchors)):
         print(anchors[i].text)
         f.write(anchors[i].text.lstrip()+'\n')
-        publish_time = dparser.parse(times[i].text, fuzzy=True)
+        publish_time = times[i].text.split(pattern, 1)[-1]
+        publish_time = dparser.parse(publish_time, fuzzy=True)
+        #print(str(publish_time))
         if publish_time < cutoff:
-            print("here")
+            #print("herehere")
             break
     if i+1 != len(anchors):
         break
