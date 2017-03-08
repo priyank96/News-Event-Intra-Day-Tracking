@@ -1,6 +1,7 @@
 '''picks the positive headlines from the scrubbed headlines'''
 from scrubber import scrubber
 import headlines_ndtv
+#from TextClassifier.headline_classifier import filter_headline
 
 f=open("headlines(ndtv).txt",'r')
 
@@ -17,7 +18,9 @@ while hl!="end":
         #print(hl)
         score=scrubber(hl[:-1])
         if(score>0):
-                 h.write(' '.join(hl)+'\n')
+                 hl = ' '.join(hl)
+                 #if filter_headline(hl):
+                 h.write(hl+'\n')
                 #h.write('score: '+str(score)+'\n\n')
          #print(score)
         hl=f.readline().lower()
