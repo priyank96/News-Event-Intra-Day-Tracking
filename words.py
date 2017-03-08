@@ -12,7 +12,7 @@ words = {'pact': 2, 'co-develop': 1, 'raise': 1, 'up': 2, 'not': -1, 'restart': 
          'dividend': 2, 'invokes': 1, 'pacts': 1, 'conversion': 1, 'executes': 1, 'resumes': 1, 'begins': 1,
          'winning': 1,
          'invests': -1, 'forays': 1, 'completes': 1, 'enters': 1, 'slumps': -1, 'dips': -1, 'bad': -2, 'drops': -1,
-         'lifts': 1, 'control': -1, 'sales': 2, 'merges': 1}
+         'lifts': 1, 'control': -1, 'sales': 2, 'merges': 1,'decline':-1,'dip':-1}
 
 '''listed=('tata housing','jubilant life','mahindra holidays','thermax','trident','idfc','ceat','jsw steel','spicejet','nestle india','hitachi home','vedanta',
         'maruti suzuki','lupin','dish tv','novartis','axis bank','tvs motor','nestle','hdfc','ril','bajaj auto','sks microfinance','eros international media','eros','jk tyre'
@@ -27,5 +27,11 @@ listed = {'ashok leyland': '500477', 'royal enfield': '505200', 'eicher motors':
           'sun pharma': '524715', 'aurobindo pharma': '524804', 'gail india': '532155', 'lupin': '500257',
           'tata global beverages': '500800', 'engineers india': '532178', 'petronet lng': '532522',
           'reliance infra': '500390', 'reliance infrastructure': '500390','reliance industries':'500325',
-          'l&t;s': "500510"}
+          'l&t;s': "500510", 'tata power':'500400','wipro':'507685','tata motors':'500570',
+          'reliance communications':'532712','jubilant life sciences':'530019','rcom':'532712',
+          'tata metaliks':'513434', 'm&m;':'500520','welspun enterprises':'532553','yes bank':'532648',
+          'maruti':'532500','l&t;':'500510','muthoot finance':'533398','hcl technologies':'532281',
+          'hcc':'500185','indusind bank':'532187','tech mahindra':'532755','cairn india':'532792','cipla':'500087','canara bank':'532483',
+          'sbi':'500112','infosys':'500209','hdfc':'500010','jsw steel':'500228','ongc':'500312','glenmark':'532296',
+          'godrej properties':'533150','itc':'500875','srei infra finance':'523756','britannia':'500825'}
 
