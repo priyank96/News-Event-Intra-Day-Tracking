@@ -33,5 +33,5 @@ listed = {'ashok leyland': '500477', 'royal enfield': '505200', 'eicher motors':
           'maruti':'532500','l&t;':'500510','muthoot finance':'533398','hcl technologies':'532281',
           'hcc':'500185','indusind bank':'532187','tech mahindra':'532755','cairn india':'532792','cipla':'500087','canara bank':'532483',
           'sbi':'500112','infosys':'500209','hdfc':'500010','jsw steel':'500228','ongc':'500312','glenmark':'532296',
-          'godrej properties':'533150','itc':'500875','srei infra finance':'523756','britannia':'500825'}
+          'godrej properties':'533150','itc':'500875','srei infra finance':'523756','britannia':'500825','ril':'500325'}
 

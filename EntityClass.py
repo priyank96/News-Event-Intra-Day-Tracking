@@ -1,25 +1,19 @@
-import os.path
-import csv
+
 from BSEQuote import get_price
 
+past_trades_file_name = "PastTrades.h5"
 class EntityClass:
-    __slots__ = ['id', 'file_name','start']
+    __slots__ = ['id', 'line', 'headline']
 
-    def __init__(self, symbol):
+    def __init__(self, symbol,headline=""):
         self.id = symbol
-        self.file_name = "PastTrades/" + self.id + '.csv'
-        file_count = 0
-        while os.path.isfile(self.file_name):
-            self.file_name = "PastTrades/" + self.id + str(file_count) + '.csv'
-            file_count += 1
-        with open(self.file_name, 'w'):
-            pass
+        self.headline = headline
+        self.line = []
+
 
     def update_values(self):
-        with open(self.file_name,'a') as csvfile:
-            writer = csv.writer(csvfile, delimiter=',')
-            row = get_price(self.id)
-            writer.writerow(row)
+        row = get_price(self.id)
+        self.line.append(row[2])
 
 if __name__ == '__main__':
     sample_entity = EntityClass('500570')
