@@ -1,50 +1,38 @@
-import glob
-import csv
+import EntityClass
 from scipy import spatial
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
+lines = []
+def get_lines(minutes):
+    global lines
+    if len(lines) == 0:
+        file_name = EntityClass.past_trades_file_name
+        past_trades = pd.read_hdf(file_name, key='PastTrades')
+        #print(past_trades)
+        for heading in list(past_trades):
+            lines.append(past_trades[heading].values)
+
+    return [x[:minutes] for x in lines]
 
 
-def get_lines():
-    minutes = 120
-    lines = []
-    # lines.append(np.array([0 for x in range(0, minutes)]))
-    for name in glob.glob('PastTrades/*'):
+def closest_lines(core_line, minutes):
 
-        with open(name) as csvfile:
-            line = []
-            spamreader = csv.reader(csvfile, delimiter=',')
-            count = 0
-            for row in spamreader:
-                count += 1
-                if count == 1 and row:
-                    start = float(row[1])
-                    line.append(0.0)
-
-                elif row:
-                    line.append((float(row[1]) - start) * 100 / start)
-                if count == 2 * minutes:
-                    line = np.array(line)
-                    lines.append(line)
-                    break
-
-    return lines
-
-
-def closest_lines(core_line,minutes):
-    lines = get_lines()
-    #print('closestlines: ', lines)
-    # core_line = core_line[:minutes]
+    lines = get_lines(minutes)
+    #print(lines)
     core_line = np.array(core_line)
-    similarities = map(lambda x: spatial.distance.sqeuclidean(core_line, x[:minutes]), lines)
+    similarities = map(lambda x: spatial.distance.euclidean(core_line, x), lines)
     similarities = sorted(zip(similarities, lines), key=lambda x: x[0])[:3]
+    print(similarities)
     return similarities
 
 
 if __name__ == '__main__':
-    reference_line = get_lines()[4]  # arbit constant
-    lines = closest_lines(reference_line, 1)
-    for i in range(0, 3):
+    minutes = 10
+    reference_line = get_lines(minutes)[0]  # arbit constant
+    #print(reference_line)
+    lines = closest_lines(reference_line, minutes)
+    for i in range(0, 2):
         plt.plot(lines[i][1])
     plt.xticks(list(range(0, 60)))
     plt.show()
