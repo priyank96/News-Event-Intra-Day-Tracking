@@ -3,7 +3,7 @@ from scipy import spatial
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from datetime import timedelta, date
+from datetime import timedelta, date, datetime
 from dateutil.parser import parse
 
 lines_hl = []
@@ -22,9 +22,14 @@ def get_lines_hl(minutes):
 
 
 def get_lines_date(minutes):
-    yesterday = date.today() - timedelta(1)
+
     global lines_date
     if len(lines_date) == 0:
+        if datetime.now().isoweekday() == 1:
+            yesterday = date.today() - timedelta(3)
+        else:
+            yesterday = date.today() - timedelta(1)
+
         file_name = EntityClass.past_trades_file_name
         past_trades = pd.read_hdf(file_name, key='date')
         for heading in past_trades.columns:
