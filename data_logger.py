@@ -13,13 +13,13 @@ def log_data(entities):
         fresh_trades_hl = pd.DataFrame()
         for entity in entities:
             fresh_trades_hl[entity.headline] = entity.line
-        past_trades_hl = pd.concat([past_trades_hl, fresh_trades_hl], ignore_index=True, axis=1)
+        past_trades_hl = pd.concat([past_trades_hl, fresh_trades_hl], axis=1)
 
         past_trades_date = pd.read_hdf(file_name, key='date')
         fresh_trades_date = pd.DataFrame()
         for entity in entities:
             fresh_trades_date[entity.headline] = entity.line
-        past_trades_date = pd.concat([past_trades_date, fresh_trades_date], ignore_index=True, axis=1)
+        past_trades_date = pd.concat([past_trades_date, fresh_trades_date], axis=1)
 
     else:
         past_trades_hl = pd.DataFrame()
