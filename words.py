@@ -12,7 +12,7 @@ words = {'pact': 2, 'co-develop': 1, 'raise': 1, 'up': 2, 'not': -1, 'restart': 
          'dividend': 2, 'invokes': 1, 'pacts': 1, 'conversion': 1, 'executes': 1, 'resumes': 1, 'begins': 1,
          'winning': 1,
          'invests': -1, 'forays': 1, 'completes': 1, 'enters': 1, 'slumps': -1, 'dips': -1, 'bad': -2, 'drops': -1,
-         'lifts': 1, 'control': -1, 'sales': 2, 'merges': 1,'decline':-1,'dip':-1}
+         'lifts': 1, 'control': -1, 'sales': 2, 'merges': 1,'decline':-1,'dip':-1,'merger':1, 'sacks':1}
 
 '''listed=('tata housing','jubilant life','mahindra holidays','thermax','trident','idfc','ceat','jsw steel','spicejet','nestle india','hitachi home','vedanta',
         'maruti suzuki','lupin','dish tv','novartis','axis bank','tvs motor','nestle','hdfc','ril','bajaj auto','sks microfinance','eros international media','eros','jk tyre'
@@ -33,5 +33,6 @@ listed = {'ashok leyland': '500477', 'royal enfield': '505200', 'eicher motors':
           'maruti':'532500','l&t;':'500510','muthoot finance':'533398','hcl technologies':'532281',
           'hcc':'500185','indusind bank':'532187','tech mahindra':'532755','cairn india':'532792','cipla':'500087','canara bank':'532483',
           'sbi':'500112','infosys':'500209','hdfc':'500010','jsw steel':'500228','ongc':'500312','glenmark':'532296',
-          'godrej properties':'533150','itc':'500875','srei infra finance':'523756','britannia':'500825','ril':'500325'}
+          'godrej properties':'533150','itc':'500875','srei infra finance':'523756','britannia':'500825','ril':'500325','vedanta':'500295',
+          'reliance industrial infrastructure':'523445'}
 
