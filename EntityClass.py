@@ -10,6 +10,12 @@ class EntityClass:
         self.headline = headline
         self.line = []
 
+    def __hash__(self):
+        return hash(self.id)
+
+    def __eq__(self, other):
+        if isinstance(other, EntityClass):
+            return self.id == other.id
 
     def update_values(self):
         row = get_price(self.id)
