@@ -11,16 +11,21 @@ def headline_to_symbol():
         headlines = (fil.read().strip().splitlines())
     entities = []
     companies = []
+
+    # re work this logic, it doesn't work. refer to scrubber
     for hl in headlines:
         for company in listed.keys():
             if company+' ' in hl:
                 #print(hl)
                 companies.append((listed[company]," ".join(hl.split())))
 
-    for company in list(set(companies)):
-        print(company)
+
+
+    for company in companies:
+        #print(company)
         entities.append(EntityClass(company[0],company[1]))
-    return entities
+
+    return set(entities)
 
 
 if __name__ == '__main__':
