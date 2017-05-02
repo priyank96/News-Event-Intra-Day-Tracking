@@ -11,7 +11,6 @@ num_entities = len(entities)
 minutes = 0
 clock = datetime.now()
 
-
 while clock.time() < time(15, 30):
     clock = datetime.now()
     if clock.time() > time(9, 14):
@@ -21,10 +20,10 @@ while clock.time() < time(15, 30):
 
         for entity in entities:
             entity.update_values()
-            similar_lines =[]   # list(map(lambda x: x[1], closest_lines(entity.line, minutes)))
+            similar_lines = list(map(lambda x: x[1], closest_lines(entity.line, minutes)))
             similar_lines.append(entity.line)
             # print('here')
-            plot(similar_lines, entity.id)
+            plot(entity.line, entity.id)
 
     else:
         print("waiting " + str(clock.time()))
