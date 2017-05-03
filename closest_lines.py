@@ -17,12 +17,11 @@ def get_lines_hl(minutes):
         past_trades = pd.read_hdf(file_name, key='headline')
         for heading in list(past_trades):
             lines_hl.append(past_trades[heading].values)
-    print("headlines: "+str(len(lines_hl)))
+    print("headlines: " + str(len(lines_hl)))
     return [x[:minutes] for x in lines_hl]
 
 
 def get_lines_date(minutes):
-
     global lines_date
     if len(lines_date) == 0:
         if datetime.now().isoweekday() == 1:
@@ -33,10 +32,14 @@ def get_lines_date(minutes):
         file_name = EntityClass.past_trades_file_name
         past_trades = pd.read_hdf(file_name, key='date')
         for heading in past_trades.columns:
-            #print(type(heading))
+
             if parse(heading[:10], fuzzy=True) == yesterday:
                 lines_date.append(past_trades[heading].values)
-    print("dates: "+str(len(lines_date)))
+            #else can be removed with better data
+            else:
+                lines_date.append(past_trades[heading].values)
+
+    print("dates: " + str(len(lines_date)))
     return [x[:minutes] for x in lines_date]
 
 
@@ -49,21 +52,20 @@ def closest_lines(core_line, minutes):
     similarities_date = list(map(lambda x: spatial.distance.euclidean(core_line, x), lines_date))
 
     try:
-            similarities = [sorted(zip(similarities_hl, lines_hl), key=lambda x: x[0])[0],
-                            sorted(zip(similarities_date, lines_date), key=lambda x: x[0])[0]]
-            # closest line in general and closest of most recent lines
-    except IndexError:
-            #nothing happened yesterday
-            #print("herer")
-            similarities = sorted(zip(similarities_hl, lines_hl), key=lambda x: x[0])
+        # closest line in general and closest of most recent lines, consider adding more lines with better dataset
+        similarities = [sorted(zip(similarities_hl, lines_hl), key=lambda x: x[0])[0],
+                        sorted(zip(similarities_date, lines_date), key=lambda x: x[0])[0]]
 
-    #print(similarities)
+    except IndexError:
+        # nothing happened yesterday
+        similarities = sorted(zip(similarities_hl, lines_hl), key=lambda x: x[0])
+
     return similarities
 
 
 if __name__ == '__main__':
-    minutes = 60
-    reference_line = get_lines_hl(minutes)[2]  # arbit constant
+    minutes = 15
+    reference_line = get_lines_date(minutes)[9]  # arbit constant
     lines = closest_lines(reference_line, minutes)
 
     for i in range(0, 2):
