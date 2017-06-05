@@ -7,3 +7,7 @@ Find here Python3.5 scripts to scrape news articles, decide if they are positive
 <a href="https://www.python.org/">Python</a>   
 <a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>  
 <a href="http://bokeh.pydata.org/en/latest/">Bokeh</a>
+
+# Blog
+<a href="https://newstradeblog.wordpress.com/">News Trade Blog</a>
+
