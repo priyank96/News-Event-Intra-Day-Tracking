@@ -4,8 +4,16 @@ from closest_lines import closest_lines
 from plotter import plot, prepare_plots
 from data_logger import log_data
 from time import sleep
+from EntityClass import EntityClass
 
 entities = headline_to_symbol()
+ans = str(input("Add entity? (y/n)"))
+while ans == 'y':
+    symbol = str(input("Enter symbol:"))
+    headline = str(input("Enter headline:"))
+    entities.append(EntityClass(symbol,headline))
+    ans = str(input("Add entity? (y/n)"))
+    
 prepare_plots(entities)
 num_entities = len(entities)
 
@@ -22,9 +30,13 @@ while clock.time() < time(15, 30):
 
         for entity in entities:
             entity.update_values()
-            similar_lines = list(map(lambda x: x[1], closest_lines(entity.line, minutes+5)))
+            #similar_lines = list(map(lambda x: x[1], closest_lines(entity.line, minutes)))
+            similar_lines = []
             similar_lines.append(entity.line)
             plot(similar_lines, entity.id)
+            #query the classifier
+            #print output of the classifier
+            #prepare the next classifer
 
     else:
         print("waiting " + str(clock.time()))
