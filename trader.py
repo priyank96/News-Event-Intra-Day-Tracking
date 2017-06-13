@@ -35,7 +35,7 @@ while clock.time() < time(15, 30):
     if clock.time() > time(9, 14):
         minutes += 1
         try:
-            if 1 < minutes < 90:  # largest index before NaN values appear in data
+            if 0 < minutes < 90:  # largest index before NaN values appear in data
                 print("Start- classifier training")
                 ip = []
                 op = []
@@ -47,10 +47,11 @@ while clock.time() < time(15, 30):
                 print("Done- classifier training")
         except Exception as e:
             print(str(e))
-        
+
         while datetime.now().second != 59:  # start at end of minute
             continue
-        
+
+
         for entity in entities:
             entity.update_values()
             # similar_lines = list(map(lambda x: x[1], closest_lines(entity.line, minutes)))
@@ -58,10 +59,12 @@ while clock.time() < time(15, 30):
             # similar_lines.append(entity.line)
 
             plot(entity.line, entity.id)
-            if 1 < minutes < 90:  # largest index before NaN values appear in data
-                print(minutes)
-                print(classifier.predict(entity.line))
-
+            try:
+                if 0 < minutes < 90:  # largest index before NaN values appear in data
+                    print(entity.id)
+                    print(classifier.predict(entity.line))
+            except Exception as e:
+                print(str(e))
     else:
         print("waiting " + str(clock.time()))
     sleep(60)
