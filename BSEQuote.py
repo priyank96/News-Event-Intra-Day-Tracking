@@ -1,9 +1,10 @@
 """stock price data from google finance"""
 
 import urllib.request as  urllib2
+import urllib
 from bs4 import BeautifulSoup as bs
 from datetime import datetime, time
-import csv
+
 
 
 def static(varname, value):
@@ -14,7 +15,7 @@ def static(varname, value):
     return decorate
 
 
-def toFloat(result):
+def to_float(result):
     val = []
     for i in result:
         if i == '+' or i == '-' or i.isnumeric() or i == '.':
@@ -24,34 +25,35 @@ def toFloat(result):
 
 
 @static("line_counter", 0)
-def getPrice(symbol, mode='real'):
-    if mode == 'simulated':
-        with open('TradeLog.csv', 'r') as fil:      #Fix file names here
-            for i, line in enumerate(fil):
-                if i == getPrice.line_counter:
-                    return line.split(',')
-
+def get_price(symbol):
     url = "https://www.google.com/finance?q=BOM%3A" + symbol
     val = []
     while len(val) != 3:
-        try:
-            r = urllib2.urlopen(url)
-            content = r.read()
-        except urllib2.HTTPError as e:
-            content = e.read()
+        while True:
+            try:
+                r = urllib2.urlopen(url)
+                content = r.read()
+                break
+            except urllib2.HTTPError as e:
+                content = e.read()
+                break
+            except urllib.error.URLError:
+                time.sleep(2) #wait two seconds and try again
+                pass
+
 
         soup = bs(content, "html.parser")
-        val = [datetime.now().strftime("%Y-%m-%d %H:%M:%S")]
+        val = [datetime.now().strftime("%H:%M:%S")]
 
         result = soup.find("span", {"class": "pr"})
         if result is not None:
-            val.append(toFloat(result.contents[1].string))
+            val.append(to_float(result.contents[1].string))
 
             result = soup.find("span", {"class": "ch bld"})
-            val.append(toFloat(result.contents[2].string))
+            val.append(to_float(result.contents[2].string))
 
     return val  # time,price, change
 
 
 if __name__ == '__main__':
-    print(getPrice('524804'))
+    print(get_price('524804'))
