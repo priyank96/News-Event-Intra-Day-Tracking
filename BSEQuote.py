@@ -3,7 +3,8 @@
 import urllib.request as  urllib2
 import urllib
 from bs4 import BeautifulSoup as bs
-from datetime import datetime, time
+from datetime import datetime
+from time import sleep
 
 
 
@@ -38,7 +39,7 @@ def get_price(symbol):
                 content = e.read()
                 break
             except urllib.error.URLError:
-                time.sleep(2) #wait two seconds and try again
+                sleep(2) #wait two seconds and try again
                 pass
 
 
