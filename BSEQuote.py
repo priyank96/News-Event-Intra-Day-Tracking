@@ -40,6 +40,7 @@ def get_price(symbol):
                 break
             except urllib.error.URLError:
                 sleep(2) #wait two seconds and try again
+                print('waiting for internet')
                 pass
 
 
