@@ -24,9 +24,4 @@ def plot(lines, id):
 
 
 
-if __name__=='__main__':
-    from closest_lines import get_lines_hl
-    lines = get_lines_hl(60)
-    prepare_plots([EntityClass('Sample')])
-    plot(lines,'Sample')
-    plot(lines, 'Sample')
+
